@@ -1,0 +1,15 @@
+<form {{on "submit" this.fetchOrganization}}>
+  <label for="org">Organization:</label>
+  <input id="org" type="text" {{on "input" this.updateOrganization}} />
+  
+  <label for="token">GitHub Token:</label>
+  <input id="token" type="text" {{on "input" this.updateToken}} />
+  
+  <button type="submit">Fetch Repositories</button>
+</form>
+
+{{#if this.organization}}
+  {{#each this.organization.repositories as |repo|}}
+    <RepositoryItem @repo={{repo}} @token={{this.token}} />
+  {{/each}}
+{{/if}}
