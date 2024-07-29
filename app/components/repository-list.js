@@ -7,6 +7,7 @@ export default class RepositoryListComponent extends Component {
   @service store;
   @service github;
   @tracked organizationName;
+  @tracked token;
   @tracked organization;
 
   @action
@@ -16,6 +17,7 @@ export default class RepositoryListComponent extends Component {
 
   @action
   updateToken(event) {
+    this.token = event.target.value;
     this.github.setToken(event.target.value);
   }
 

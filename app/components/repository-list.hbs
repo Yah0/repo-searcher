@@ -7,7 +7,7 @@
     <label for="token">GitHub Token</label>
     <input id="token" type="text" {{on "input" this.updateToken}} class="input" />
   </div>
-  <button type="submit" class="button">Fetch Repositories</button>
+    <button type="submit" class="button" disabled={{if this.token false true}}>Fetch Repositories</button>
 </form>
 
 {{#if this.organization}}
