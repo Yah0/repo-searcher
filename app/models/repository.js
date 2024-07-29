@@ -6,7 +6,6 @@ export default class RepositoryModel extends Model {
   @attr htmlUrl;
   @attr language;
   @attr isPrivate;
-  @attr branchCount;
   @belongsTo('organization', { async: true, inverse: 'repositories' }) organization;
 
   get fullName() {
