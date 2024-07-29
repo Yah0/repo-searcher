@@ -1,15 +1,19 @@
-<form {{on "submit" this.fetchOrganization}}>
-  <label for="org">Organization:</label>
-  <input id="org" type="text" {{on "input" this.updateOrganization}} />
-  
-  <label for="token">GitHub Token:</label>
-  <input id="token" type="text" {{on "input" this.updateToken}} />
-  
-  <button type="submit">Fetch Repositories</button>
+<form class="form" {{on "submit" this.fetchOrganization}}>
+  <div class="form-group">
+    <label for="org">Organization</label>
+    <input id="org" type="text" {{on "input" this.updateOrganization}} class="input" />
+  </div>
+  <div class="form-group">
+    <label for="token">GitHub Token</label>
+    <input id="token" type="text" {{on "input" this.updateToken}} class="input" />
+  </div>
+  <button type="submit" class="button">Fetch Repositories</button>
 </form>
 
 {{#if this.organization}}
-  {{#each this.organization.repositories as |repo|}}
-    <RepositoryItem @repo={{repo}} @token={{this.token}} />
-  {{/each}}
+  <div class="repositories">
+    {{#each this.organization.repositories as |repo|}}
+      <RepositoryItem @repo={{repo}} @token={{this.token}} />
+    {{/each}}
+  </div>
 {{/if}}

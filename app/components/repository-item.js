@@ -8,17 +8,21 @@ export default class RepositoryItemComponent extends Component {
   @service github;
   @tracked branches;
   @tracked showBranches = false;
+  @tracked numberOfBranches;
 
-  get branchUrl() {
-    return `https://github.com/${this.args.repo.fullName}/branches`;
+  constructor() {
+    super(...arguments);
+    this.fetchBranches();
+  }
+
+  async fetchBranches() {
+    const fullName = `${this.args.repo.owner}/${this.args.repo.name}`;
+    this.branches = await this.github.fetchBranches(fullName);
+    this.numberOfBranches = this.branches.length;
   }
 
   @action
-  async toggleBranches() {
-    if (!this.showBranches) {
-      const fullName = `${this.args.repo.owner}/${this.args.repo.name}`;
-      this.branches = await this.github.fetchBranches(fullName);
-    }
+  toggleBranches() {
     this.showBranches = !this.showBranches;
   }
 }
