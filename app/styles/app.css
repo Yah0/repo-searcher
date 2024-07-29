@@ -79,3 +79,12 @@
   .repo-item button {
     margin-top: 8px;
   }
+
+  .branch-row {
+    padding: 8px;
+  }
+
+  .branch-item {
+    flex: 1;
+    margin: 0;
+  }
