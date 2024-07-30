@@ -12,7 +12,9 @@
   </form>
 </div>
 
-<Filters @filterRepos={{this.filterRepos}} @languages={{this.uniqueLanguages}} />
+{{#if this.showFilters}}
+  <Filters @filterRepos={{this.filterRepos}} @languages={{this.uniqueLanguages}} />
+{{/if}}
 
 {{#if this.filteredRepositories}}
   <div class="repositories">

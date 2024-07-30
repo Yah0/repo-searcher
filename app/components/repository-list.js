@@ -12,21 +12,23 @@ export default class RepositoryListComponent extends Component {
   @tracked repositories = [];
   @tracked filteredRepositories = [];
   @tracked uniqueLanguages = [];
+  @tracked showFilters = false;
 
   async fetchRepositories() {
     const repositories = await this.organization.get('repositories');
-    const languages = new Set();
+    const languages = [];
 
     repositories.forEach((repo) => {
       const language = repo.language;
-      if (language) {
-        languages.add(language);
+      if (language && !languages.includes(language)) {
+        languages.push(language);
       }
     });
 
-    this.uniqueLanguages = Array.from(languages);
+    this.uniqueLanguages = languages;
     this.repositories = repositories;
-    this.filteredRepositories = repositories; // Initial display
+    this.filteredRepositories = repositories;
+    this.showFilters = true;
   }
 
   @action
@@ -42,6 +44,7 @@ export default class RepositoryListComponent extends Component {
 
   @action
   async fetchOrganization(event) {
+    this.showFilters = false;
     event.preventDefault();
     try {
       const organization = await this.store.findRecord(

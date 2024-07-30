@@ -1,4 +1,4 @@
-<form class="filters-form" {{on "submit" this.applyFilters}}>
+<form class="form" {{on "submit" this.applyFilters}}>
   <label for="public">Public</label>
   <input id="public" type="checkbox" {{on "input" this.toggleFilterType}} class="input" checked={{this.selectedFilters.public}} />
   <label for="private">Private</label>
