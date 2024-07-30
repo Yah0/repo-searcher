@@ -9,10 +9,26 @@ export default class FiltersComponent extends Component {
     languages: []
   };
 
+  constructor() {
+    super(...arguments);
+    this.selectedFilters.languages = [...this.args.languages];
+  }
+
   @action
   toggleFilterType(event) {
     const { id, checked } = event.target;
-    this.selectedFilters[id] = checked;
+
+    if (id === 'public') {
+      if (!checked && !this.selectedFilters.private) {
+        this.selectedFilters.private = true;
+      }
+      this.selectedFilters.public = checked;
+    } else if (id === 'private') {
+      if (!checked && !this.selectedFilters.public) {
+        this.selectedFilters.public = true;
+      }
+      this.selectedFilters.private = checked;
+    }
   }
 
   @action

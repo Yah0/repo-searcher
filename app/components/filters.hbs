@@ -1,11 +1,19 @@
-<form class="form" {{on "submit" this.applyFilters}}>
-  <label for="public">Public</label>
-  <input id="public" type="checkbox" {{on "input" this.toggleFilterType}} class="input" checked={{this.selectedFilters.public}} />
-  <label for="private">Private</label>
-  <input id="private" type="checkbox" {{on "input" this.toggleFilterType}} class="input" checked={{this.selectedFilters.private}} />
-  {{#each @languages as |language|}}
-    <label for={{language}}>{{language}}</label>
-    <input id={{language}} type="checkbox" value={{language}} {{on "input" this.toggleLanguageFilter}} class="input" />
-  {{/each}}
+<form class="filters-form" {{on "submit" this.applyFilters}}>
+  <div class="checkbox-group">
+    <div class="checkbox-column">
+      <h3>Ownership</h3>
+      <label for="public">Public</label>
+      <input id="public" type="checkbox" {{on "input" this.toggleFilterType}} class="input" checked={{this.selectedFilters.public}} />
+      <label for="private">Private</label>
+      <input id="private" type="checkbox" {{on "input" this.toggleFilterType}} class="input" checked={{this.selectedFilters.private}} />
+    </div>
+    <div class="checkbox-column">
+      <h3>Main Language</h3>
+      {{#each @languages as |language|}}
+        <label for={{language}}>{{language}}</label>
+        <input id={{language}} type="checkbox" value={{language}} {{on "input" this.toggleLanguageFilter}} class="input" checked={{this.selectedFilters.languages}} />
+      {{/each}}
+    </div>
+  </div>
   <button type="submit" class="button">Filter Repositories</button>
 </form>
