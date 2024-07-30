@@ -8,12 +8,12 @@
       <label for="token">GitHub Token</label>
       <input id="token" type="text" {{on "input" this.updateToken}} class="input" />
     </div>
-    <button type="submit" class="button" disabled={{if this.token false true}}>Fetch Repositories</button>
+    <button type="submit" class="submit-button" disabled={{if this.token false true}}>Fetch Repositories</button>
   </form>
 </div>
 
 {{#if this.displayError}}
-  <div>We had trouble processing your request. Please try again.</div>
+  <div class="error-info">We had trouble processing your request. Please try again.</div>
 {{/if}}
 
 {{#if this.showFilters}}

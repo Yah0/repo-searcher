@@ -44,7 +44,7 @@ body {
   border-radius: 5px;
 }
 
-.button {
+.submit-button {
   width: 100%;
   padding: 10px;
   background-color: #007bff;
@@ -55,11 +55,11 @@ body {
   font-size: 16px;
 }
 
-.button:hover {
+.submit-button:hover {
   background-color: #0056b3;
 }
 
-.button:disabled {
+.submit-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
@@ -169,5 +169,6 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
+  padding: 8px;
 }
