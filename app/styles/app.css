@@ -12,18 +12,19 @@ body {
   padding: 20px;
 
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  align-items: center;
 }
 
 .form {
   background-color: #fff;
-  padding: 30px;
-  border-radius: 10px;
+  padding: 10px;
+  border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 100%;
   text-align: center;
   border: 1px solid #ddd;
+  width: 400px;
+  margin-top: 10px;
 }
 
 .form-group {
@@ -64,28 +65,57 @@ body {
 }
 
 .repo-row {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   background-color: #fff;
-  border-radius: 10px;
+  width: 400px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid #ddd;
-  padding: 8px;
+}
+
+.repo-item.name {
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 2px solid blue;
+  margin-bottom: 10px;
+}
+
+.repo-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .repo-item {
   flex: 1;
-  margin: 0;
+}
+
+.repo-item.link {
+  margin-bottom: 10px;
+}
+
+.repo-item.branches,
+.repo-item.language,
+.repo-item.private {
+  margin-right: 20px;
+  width: 100%;
+}
+
+.repo-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.repo-item a:hover {
+  text-decoration: underline;
+}
+
+.repo-item.button {
   text-align: center;
-}
-
-.repo-item h2,
-.repo-item p,
-.repo-item a,
-.repo-item button {
-  margin: 0;
-}
-
-.repo-item button {
-  margin-top: 8px;
 }
 
 .branch-row {
@@ -95,4 +125,14 @@ body {
 .branch-item {
   flex: 1;
   margin: 0;
+}
+
+.branches-button {
+  width: 100%;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }

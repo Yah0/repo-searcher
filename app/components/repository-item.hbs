@@ -1,21 +1,27 @@
 <div class="repo-row">
-  <div class="repo-item">
+  <div class="repo-item name">
     <h2>{{@repo.name}}</h2>
   </div>
-  <div class="repo-item">
+  <div class="repo-item link">
     <a href={{@repo.htmlUrl}} target="_blank" rel="noopener noreferrer">View on GitHub</a>
   </div>
-  <div class="repo-item">
-    <p>Number of branches: {{this.numberOfBranches}}</p>
+  <div class="repo-details">
+    <div class="repo-item branches">
+      Branches: {{this.numberOfBranches}}
+    </div>
+    <div class="repo-item language">
+      {{@repo.language}}
+    </div>
+    <div class="repo-item private">
+      {{#if @repo.isPrivate}}
+        Private Repo
+      {{else}}
+        Private Repo
+      {{/if}}
+    </div>
   </div>
-  <div class="repo-item">
-    <p>Language: {{@repo.language}}</p>
-  </div>
-  <div class="repo-item">
-    <p>Private: {{@repo.isPrivate}}</p>
-  </div>
-  <div class="repo-item">
-    <button type="button" {{on "click" this.toggleBranches}}>{{#if this.showBranches}}Hide Branches{{else}}Show Branches{{/if}}</button>
+  <div class="repo-item button">
+    <button type="button" class="branches-button" {{on "click" this.toggleBranches}}>{{#if this.showBranches}}Hide Branches{{else}}Show Branches{{/if}}</button>
     {{#if this.showBranches}}
       <BranchList @branches={{this.branches}} />
     {{/if}}
