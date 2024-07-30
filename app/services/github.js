@@ -10,12 +10,15 @@ export default class GithubService extends Service {
   }
 
   async fetchBranches(fullName) {
-    let response = await fetch(`https://api.github.com/repos/${fullName}/branches`, {
-      headers: {
-        'Authorization': `token ${this.token}`,
-        'Accept': 'application/vnd.github+json'
-      }
-    });
+    let response = await fetch(
+      `https://api.github.com/repos/${fullName}/branches`,
+      {
+        headers: {
+          Authorization: `token ${this.token}`,
+          Accept: 'application/vnd.github+json',
+        },
+      },
+    );
     return await response.json();
   }
 }

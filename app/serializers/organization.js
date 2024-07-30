@@ -10,15 +10,15 @@ export default class OrganizationSerializer extends RESTSerializer {
       },
       relationships: {
         repositories: {
-          data: payload.map(repo => ({
+          data: payload.map((repo) => ({
             id: repo.id,
-            type: 'repository'
-          }))
-        }
-      }
+            type: 'repository',
+          })),
+        },
+      },
     };
 
-    let included = payload.map(repo => ({
+    let included = payload.map((repo) => ({
       id: repo.id,
       type: 'repository',
       attributes: {
@@ -27,12 +27,12 @@ export default class OrganizationSerializer extends RESTSerializer {
         htmlUrl: repo.html_url,
         language: repo.language || 'Unknown',
         isPrivate: repo.private,
-      }
+      },
     }));
 
     return {
       data: organization,
-      included: included
+      included: included,
     };
   }
 }

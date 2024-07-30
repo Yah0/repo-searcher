@@ -7,8 +7,8 @@ export default class OrganizationAdapter extends ApplicationAdapter {
 
   get headers() {
     return {
-      'Authorization': `token ${this.github.token}`,
-      'Accept': 'application/json'
+      Authorization: `token ${this.github.token}`,
+      Accept: 'application/json',
     };
   }
 }

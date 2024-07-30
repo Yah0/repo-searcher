@@ -2,7 +2,7 @@ import RESTSerializer from '@ember-data/serializer/rest';
 
 export default class RepositorySerializer extends RESTSerializer {
   normalizeResponse(store, primaryModelClass, payload, id, requestType) {
-    payload = payload.map(repo => ({
+    payload = payload.map((repo) => ({
       id: repo.id,
       type: 'repository',
       attributes: {
@@ -11,8 +11,14 @@ export default class RepositorySerializer extends RESTSerializer {
         htmlUrl: repo.html_url,
         language: repo.language,
         isPrivate: repo.private,
-      }
+      },
     }));
-    return this._super(store, primaryModelClass, { data: payload }, id, requestType);
+    return super.normalizeResponse(
+      store,
+      primaryModelClass,
+      { data: payload },
+      id,
+      requestType,
+    );
   }
 }

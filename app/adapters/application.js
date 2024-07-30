@@ -6,7 +6,7 @@ export default class ApplicationAdapter extends RESTAdapter {
 
   get headers() {
     return {
-      'Authorization': `token ${this.github.token}`
+      Authorization: `token ${this.github.token}`,
     };
   }
 
