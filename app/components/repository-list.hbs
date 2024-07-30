@@ -12,6 +12,10 @@
   </form>
 </div>
 
+{{#if this.displayError}}
+  <div>We had trouble processing your request. Please try again.</div>
+{{/if}}
+
 {{#if this.showFilters}}
   <Filters @filterRepos={{this.filterRepos}} @languages={{this.uniqueLanguages}} />
 {{/if}}

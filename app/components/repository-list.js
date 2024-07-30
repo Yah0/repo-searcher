@@ -6,6 +6,7 @@ import { tracked } from '@glimmer/tracking';
 export default class RepositoryListComponent extends Component {
   @service store;
   @service github;
+
   @tracked organizationName;
   @tracked token;
   @tracked organization;
@@ -13,6 +14,7 @@ export default class RepositoryListComponent extends Component {
   @tracked filteredRepositories = [];
   @tracked uniqueLanguages = [];
   @tracked showFilters = false;
+  @tracked displayError = false;
 
   async fetchRepositories() {
     const repositories = await this.organization.get('repositories');
@@ -44,6 +46,7 @@ export default class RepositoryListComponent extends Component {
 
   @action
   async fetchOrganization(event) {
+    this.displayError = false;
     this.showFilters = false;
     event.preventDefault();
     try {
@@ -54,6 +57,7 @@ export default class RepositoryListComponent extends Component {
       this.organization = organization;
       await this.fetchRepositories();
     } catch (error) {
+      this.displayError = true;
       console.error('Error fetching organization:', error);
     }
   }
