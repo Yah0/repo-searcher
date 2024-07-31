@@ -6,7 +6,7 @@ export default class FiltersComponent extends Component {
   @tracked selectedFilters = {
     public: true,
     private: true,
-    languages: []
+    languages: [],
   };
 
   constructor() {
@@ -37,7 +37,9 @@ export default class FiltersComponent extends Component {
     if (event.target.checked) {
       this.selectedFilters.languages.push(language);
     } else {
-      this.selectedFilters.languages = this.selectedFilters.languages.filter(lang => lang !== language);
+      this.selectedFilters.languages = this.selectedFilters.languages.filter(
+        (lang) => lang !== language,
+      );
     }
   }
 

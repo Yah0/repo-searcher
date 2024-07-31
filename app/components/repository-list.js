@@ -64,10 +64,12 @@ export default class RepositoryListComponent extends Component {
 
   @action
   filterRepos(filters) {
-    this.filteredRepositories = this.repositories.filter(repo => {
+    this.filteredRepositories = this.repositories.filter((repo) => {
       const matchesPublic = filters.public && !repo.isPrivate;
       const matchesPrivate = filters.private && repo.isPrivate;
-      const matchesLanguage = filters.languages.length === 0 || filters.languages.includes(repo.language);
+      const matchesLanguage =
+        filters.languages.length === 0 ||
+        filters.languages.includes(repo.language);
 
       return (matchesPublic || matchesPrivate) && matchesLanguage;
     });
