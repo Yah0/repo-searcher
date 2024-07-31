@@ -172,3 +172,9 @@ body {
   font-size: 14px;
   padding: 8px;
 }
+
+.error-info {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+}
