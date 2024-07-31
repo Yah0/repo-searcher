@@ -65,7 +65,7 @@ export default class RepositoryListComponent extends Component {
     try {
       const organization = await this.store.findRecord(
         'organization',
-        this.organizationName
+        this.organizationName,
       );
       this.organization = organization;
       await this.fetchRepositories();
