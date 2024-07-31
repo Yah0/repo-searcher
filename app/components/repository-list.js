@@ -8,7 +8,7 @@ export default class RepositoryListComponent extends Component {
   @service github;
 
   @tracked organizationName;
-  @tracked token = localStorage.getItem('github-token') || '';
+  @tracked token;
   @tracked organization;
   @tracked repositories = [];
   @tracked filteredRepositories = [];
@@ -16,13 +16,6 @@ export default class RepositoryListComponent extends Component {
   @tracked showFilters = false;
   @tracked displayError = false;
   @tracked displayNoAccess = false;
-
-  constructor() {
-    super(...arguments);
-    if (this.token) {
-      this.github.setToken(this.token);
-    }
-  }
 
   async fetchRepositories() {
     const repositories = await this.organization.repositories;
