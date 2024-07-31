@@ -17,7 +17,7 @@ export default class RepositoryListComponent extends Component {
   @tracked displayError = false;
 
   async fetchRepositories() {
-    const repositories = await this.organization.get('repositories');
+    const repositories = await this.organization.repositories;
     const languages = [];
 
     repositories.forEach((repo) => {
