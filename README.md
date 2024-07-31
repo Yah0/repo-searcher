@@ -1,7 +1,10 @@
 # repo-searcher
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+The app connects with GitHub API and based on provided search (organization name) fetches all organization repos wheter the provided token has acces to it or not.
+
+After fetching you are able to filter fetched repos based on wheter they are private or public and you can filter them by programming languages that are present among all repos.
+
+The app is designed to be run on Google Chrome Browser.
 
 ## Prerequisites
 
