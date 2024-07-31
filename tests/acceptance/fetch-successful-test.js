@@ -12,12 +12,14 @@ module('Acceptance | fetch repositories', function (hooks) {
   hooks.beforeEach(function () {
     store = this.owner.lookup('service:store');
 
-    const MockGithubService = Service.extend({
-      fetchBranches: async () => [],
+    const MockGithubService = class extends Service {
+      async fetchBranches() {
+        return [];
+      }
       setToken(token) {
         this.token = token;
-      },
-    });
+      }
+    };
 
     this.owner.register('service:github', MockGithubService);
     const githubService = this.owner.lookup('service:github');
@@ -33,8 +35,14 @@ module('Acceptance | fetch repositories', function (hooks) {
     const repoName2 = 'testName1';
     const repoUrl2 = 'www.testUrl1.com';
     const repoLanguage2 = 'testLanguage1';
-    const branches1 = [{ id: 'main', name: 'main' }, { id: 'dev', name: 'dev' }];
-    const branches2 = [{ id: 'main', name: 'main' }, { id: 'feature', name: 'feature' }];
+    const branches1 = [
+      { id: 'main', name: 'main' },
+      { id: 'dev', name: 'dev' },
+    ];
+    const branches2 = [
+      { id: 'main', name: 'main' },
+      { id: 'feature', name: 'feature' },
+    ];
 
     const testOrganization = {
       id: organizationName,
@@ -61,12 +69,14 @@ module('Acceptance | fetch repositories', function (hooks) {
       ],
     };
 
-    fetchBranchesStub.withArgs(`${organizationName}/${repoName1}`).resolves(branches1);
-    fetchBranchesStub.withArgs(`${organizationName}/${repoName2}`).resolves(branches2);
+    fetchBranchesStub
+      .withArgs(`${organizationName}/${repoName1}`)
+      .resolves(branches1);
+    fetchBranchesStub
+      .withArgs(`${organizationName}/${repoName2}`)
+      .resolves(branches2);
 
     sinon.stub(store, 'findRecord').resolves(testOrganization);
-
-    assert.expect(9);
 
     await visit('/');
     assert.dom('.form-container').exists('The form is loaded');

@@ -17,7 +17,6 @@ module('Acceptance | fetch failed', function (hooks) {
 
     sinon.stub(store, 'findRecord').throws(new Error('Record not found'));
 
-    assert.expect(2);
     await visit('/');
     assert.dom('.form-container').exists('The form is loaded');
     await fillIn('#org', nonExistingOrganisationName);
