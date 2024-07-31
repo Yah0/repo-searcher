@@ -15,7 +15,7 @@
       <h3>Main Language</h3>
       {{#each @languages as |language|}}
         <div class="checkbox-wrapper">
-          <label for={{language}}>{{language}}</label>
+          <label class="language-filter-name" for={{language}}>{{language}}</label>
           <input id={{language}} type="checkbox" value={{language}} {{on "input" this.toggleLanguageFilter}} class="input" checked={{this.selectedFilters.languages}} />
         </div>
       {{/each}}
