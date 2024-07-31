@@ -2,16 +2,22 @@
   <div class="checkbox-group">
     <div class="checkbox-column">
       <h3>Ownership</h3>
-      <label for="public">Public</label>
-      <input id="public" type="checkbox" {{on "input" this.toggleFilterType}} class="input" checked={{this.selectedFilters.public}} />
-      <label for="private">Private</label>
-      <input id="private" type="checkbox" {{on "input" this.toggleFilterType}} class="input" checked={{this.selectedFilters.private}} />
+      <div class="checkbox-wrapper">
+        <label for="public">Public</label>
+        <input id="public" type="checkbox" {{on "input" this.toggleFilterType}} class="input" checked={{this.selectedFilters.public}} />
+      </div>
+      <div class="checkbox-wrapper">
+        <label for="private">Private</label>
+        <input id="private" type="checkbox" {{on "input" this.toggleFilterType}} class="input" checked={{this.selectedFilters.private}} />
+      </div>
     </div>
     <div class="checkbox-column">
       <h3>Main Language</h3>
       {{#each @languages as |language|}}
-        <label for={{language}}>{{language}}</label>
-        <input id={{language}} type="checkbox" value={{language}} {{on "input" this.toggleLanguageFilter}} class="input" checked={{this.selectedFilters.languages}} />
+        <div class="checkbox-wrapper">
+          <label for={{language}}>{{language}}</label>
+          <input id={{language}} type="checkbox" value={{language}} {{on "input" this.toggleLanguageFilter}} class="input" checked={{this.selectedFilters.languages}} />
+        </div>
       {{/each}}
     </div>
   </div>
