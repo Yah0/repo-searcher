@@ -8,16 +8,27 @@ export default class RepositoryListComponent extends Component {
   @service github;
 
   @tracked organizationName;
-  @tracked token;
+  @tracked token = localStorage.getItem('github-token') || '';
   @tracked organization;
   @tracked repositories = [];
   @tracked filteredRepositories = [];
   @tracked uniqueLanguages = [];
   @tracked showFilters = false;
   @tracked displayError = false;
+  @tracked displayNoAccess = false;
+
+  constructor() {
+    super(...arguments);
+    if (this.token) {
+      this.github.setToken(this.token);
+    }
+  }
 
   async fetchRepositories() {
     const repositories = await this.organization.repositories;
+    if (repositories.length === 0) {
+      this.displayNoAccess = true;
+    }
     const languages = [];
 
     repositories.forEach((repo) => {
@@ -42,17 +53,19 @@ export default class RepositoryListComponent extends Component {
   updateToken(event) {
     this.token = event.target.value;
     this.github.setToken(event.target.value);
+    localStorage.setItem('github-token', event.target.value);
   }
 
   @action
   async fetchOrganization(event) {
     this.displayError = false;
+    this.displayNoAccess = false;
     this.showFilters = false;
     event.preventDefault();
     try {
       const organization = await this.store.findRecord(
         'organization',
-        this.organizationName,
+        this.organizationName
       );
       this.organization = organization;
       await this.fetchRepositories();

@@ -16,11 +16,14 @@
   <div class="error-info">We had trouble processing your request. Please try again.</div>
 {{/if}}
 
-{{#if this.showFilters}}
-  <Filters @filterRepos={{this.filterRepos}} @languages={{this.uniqueLanguages}} />
+{{#if this.displayNoAccess}}
+  <div class="error-info">You have no access to this organization repositories</div>
 {{/if}}
 
 {{#if this.filteredRepositories}}
+  {{#if this.showFilters}}
+    <Filters @filterRepos={{this.filterRepos}} @languages={{this.uniqueLanguages}} />
+  {{/if}}
   <div class="repositories">
     {{#each this.filteredRepositories as |repo|}}
       <RepositoryItem @repo={{repo}} @token={{this.token}} />
