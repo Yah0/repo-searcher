@@ -3,8 +3,6 @@ import { fillIn, visit, click } from '@ember/test-helpers';
 import { setupApplicationTest } from 'repo-searcher/tests/helpers';
 import sinon from 'sinon';
 import Service from '@ember/service';
-import EmberObject from '@ember/object';
-import { A } from '@ember/array';
 
 module('Acceptance | fetch repositories', function (hooks) {
   setupApplicationTest(hooks);
@@ -38,30 +36,30 @@ module('Acceptance | fetch repositories', function (hooks) {
     const branches1 = [{ id: 'main', name: 'main' }, { id: 'dev', name: 'dev' }];
     const branches2 = [{ id: 'main', name: 'main' }, { id: 'feature', name: 'feature' }];
 
-    const testOrganization = EmberObject.create({
+    const testOrganization = {
       id: organizationName,
       name: organizationName,
-      repositories: A([
-        EmberObject.create({
+      repositories: [
+        {
           id: '1',
           name: repoName1,
           owner: organizationName,
           htmlUrl: repoUrl1,
           language: repoLanguage1,
           isPrivate: false,
-          branches: A(branches1),
-        }),
-        EmberObject.create({
+          branches: branches1,
+        },
+        {
           id: '2',
           name: repoName2,
           owner: organizationName,
           htmlUrl: repoUrl2,
           language: repoLanguage2,
           isPrivate: true,
-          branches: A(branches2),
-        }),
-      ]),
-    });
+          branches: branches2,
+        },
+      ],
+    };
 
     fetchBranchesStub.withArgs(`${organizationName}/${repoName1}`).resolves(branches1);
     fetchBranchesStub.withArgs(`${organizationName}/${repoName2}`).resolves(branches2);
